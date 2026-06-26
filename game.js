@@ -930,7 +930,7 @@ function updateVictorySequence(dt) {
       createExplosion(husbandX + 20, player.y + 10, '#ff3366', 3);
     }
 
-    if (victoryTimer > 180) {
+    if (victoryTimer > 360) {
       gameState = STATES.WIN;
       sounds.playWinMelody();
       document.getElementById('winScreen').classList.add('active');
