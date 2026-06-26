@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+  <title>Ghada's Journey</title>
+  <!-- Google Fonts for Retro Chiptune Styling -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Outfit:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/style.css">
+  <link rel="manifest" href="/manifest.json">
+  <!-- Service Worker disabled during local development to prevent aggressive caching bugs -->
+  <script>
+    // if ('serviceWorker' in navigator) { ... }
+  </script>
+</head>
+<body>
+  <!-- Orientation Lock Warning -->
+  <div id="orientationWarning" class="overlay">
+    <div class="warning-box">
+      <div class="rotate-phone-icon">📱 🔄</div>
+      <h2>Rotate Device</h2>
+      <p>Please rotate your phone to portrait (vertical) mode to play!</p>
+    </div>
+  </div>
+
+  <div id="gameContainer">
+    <!-- UI Overlays -->
+    <!-- Start Screen Overlay -->
+    <div id="startScreen" class="ui-overlay active">
+      <h1 class="game-title">GHADA'S JOURNEY</h1>
+      <p class="subtitle">Cairo to Rye Brook</p>
+      
+      <div class="instructions">
+        <p class="control-desc">Tap screen to JUMP / FLAP</p>
+        <p class="control-desc">Dodge obstacles and survive!</p>
+        <p class="control-desc">Collect snacks to heal hearts ❤️</p>
+      </div>
+
+      <button id="startButton" class="retro-btn pulse">START JOURNEY</button>
+    </div>
+
+    <!-- Game Over Screen Overlay -->
+    <div id="gameOverScreen" class="ui-overlay">
+      <h1 class="game-title text-red">GAME OVER</h1>
+      <div class="stats-box">
+        <p>Distance: <span id="gameOverDistance">0</span>m</p>
+        <p>Best: <span id="gameOverBest">0</span>m</p>
+      </div>
+      <p class="encouragement">Don't worry, Ghada! Try again!</p>
+      <button id="retryButton" class="retro-btn">RETRY RUN</button>
+    </div>
+
+    <!-- Pause Screen Overlay -->
+    <div id="pauseScreen" class="ui-overlay">
+      <h1 class="game-title text-gold">PAUSED</h1>
+      <p class="subtitle">Take your screenshots!</p>
+      <button id="resumeButton" class="retro-btn pulse">RESUME</button>
+    </div>
+
+    <!-- Win Screen Overlay -->
+    <div id="winScreen" class="ui-overlay">
+      <h1 class="game-title text-gold animate-bounce">YOU MADE IT!</h1>
+      <p class="subtitle">Welcome to Rye Brook ❤️</p>
+      
+      <div class="story-ending">
+        <p>Ghada traveled 1,500 miles from Cairo, through JFK security, NYC traffic, and Westchester roads...</p>
+        <p>...to finally reach home and be together again!</p>
+        <p class="happily-ever-after">And they lived happily ever after. ✨</p>
+      </div>
+
+      <button id="restartButton" class="retro-btn">PLAY AGAIN</button>
+    </div>
+
+    <!-- Top HUD Overlay (Visible during gameplay) -->
+    <div id="hud" class="hud-overlay">
+      <div class="hud-left">
+        <div id="heartsContainer" class="hearts-display">
+          ❤️❤️❤️
+        </div>
+      </div>
+      <div class="hud-right">
+        <div class="hud-stat">DST: <span id="distanceDisplay">0</span>m</div>
+      </div>
+    </div>
+
+    <!-- Sound Toggle Button -->
+    <button id="soundToggle" class="sound-btn" aria-label="Toggle Sound">🔊</button>
+
+    <!-- Pause Button -->
+    <button id="pauseButton" class="pause-btn" aria-label="Pause Game">⏸️</button>
+
+    <!-- HTML5 Game Canvas -->
+    <canvas id="gameCanvas" width="360" height="640"></canvas>
+  </div>
+
+  <script type="module" src="/game.js"></script>
+</body>
+</html>
